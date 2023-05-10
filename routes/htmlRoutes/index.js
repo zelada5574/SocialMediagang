@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const {Todo, User} = require('../../models');
+const { Blog, User } = require('../../models');
 
 // /users
 // /users  - render all the users
-// /todos - renders all the todos
+// /Blogs - renders all the Blogs
 router.get('/users', async (req, res) => {
   try {
     const usersData = await User.findAll();
@@ -26,12 +26,12 @@ router.get('/users', async (req, res) => {
 
 router.get('/users/:userId', async (req, res) => {
   try {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const userData = await User.findByPk(userId, {
       include: [
         {
-          model: Todo,
-          attributes: ['id', 'todo',],
+          model: Blog,
+          attributes: ['id', 'content',],
         }
       ]
     });

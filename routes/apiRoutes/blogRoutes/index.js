@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const { Todo } = require('../../../models');
+const { Blog } = require('../../../models');
 
 router.post('/', async (req, res) => {
   try {
 
-    const dbTodoData = await Todo.create({
+    const dbBlogData = await Blog.create({
       ...req.body,
       userId: req.session.user.id, // req.user
     });
 
-    res.json(dbTodoData);
+    res.json(dbBlogData);
   } catch (error) {
     res.status(500).json({ error });
   }

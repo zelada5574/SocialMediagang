@@ -1,11 +1,11 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection.js');
 
-class Todo extends Model {
+class Blog extends Model {
 }
 
 
-Todo.init(
+Blog.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -13,7 +13,7 @@ Todo.init(
       primaryKey: true,
       allowNull: false,
     },
-    todo: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -23,14 +23,26 @@ Todo.init(
         model: 'user',
         key: 'id',
       }
-    }
+    },
+    likes: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    comments: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     sequelize,
     freezeTableName: true,
-    modelName: 'todo',
+    modelName: 'blog',
     // timestamps: false,
   }
 );
 
-module.exports = Todo;
+module.exports = Blog;
