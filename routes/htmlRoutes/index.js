@@ -38,14 +38,8 @@ router.get('/users/:userId', async (req, res) => {
 
     const user = userData.get({plain: true});
 
-
-    const settings = {
-      isCool: true,
-      isHungry: false,
-    };
     res.render('user_profile', {
       user,
-      settings,
     });
   } catch (error) {
     res.status(500).json({error});
