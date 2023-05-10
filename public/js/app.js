@@ -20,10 +20,10 @@ $submitBtn.addEventListener('click', async (event) => {
       body: JSON.stringify({username, password}),
     });
     const data = await response.json();
-
+    console.log(data);
     location.href = `/users/${data.id}`;
-
   } catch (error) {
+    console.log(error);
     alert(error);
   }
 });
@@ -39,6 +39,4 @@ $logoutBtn.addEventListener('click', async () => {
   } catch (error) {
     alert(error);
   }
-
-
 });

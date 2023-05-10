@@ -22,14 +22,15 @@ User.init(
       type: DataTypes.STRING,
        allowNull: false,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        isEmail:true,
-      }
-    },
+    // email: {
+    //   type: DataTypes.STRING,
+    //   allowNull: true,
+    //   unique: true,
+    // defaultValue: '',
+    //   validate: {
+    //     isEmail:true,
+    //   }
+    // },
     profile_picture: {
       type: DataTypes.STRING,
       allowNull: true,

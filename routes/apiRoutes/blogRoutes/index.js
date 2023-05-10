@@ -5,8 +5,8 @@ router.post('/', async (req, res) => {
   try {
 
     const dbBlogData = await Blog.create({
-      ...req.body,
-      userId: req.session.user.id, // req.user
+      content: req.body.content,
+      userId: req.session.user.id, 
     });
 
     res.json(dbBlogData);

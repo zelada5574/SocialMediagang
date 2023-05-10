@@ -7,7 +7,6 @@ const { User } = require('../../../models');
 router.post('/signup', async (req, res) => {
   try {
     const userData = await User.create(req.body);
-
     // this will allow us to save data into the req.session object
     // that data will persist throughout the length of the session or until a user logs out
     // or our server gets reset
@@ -16,16 +15,14 @@ router.post('/signup', async (req, res) => {
       // saving a user property on the req.session object which is the user that was just created
       // this is important because we need to know who the logged-in user is when they're doing stuff
       req.session.user = userData.get({plain: true});
-      if (req.session.visitCount) {
-        req.session.visitCount++;
-      } else {
-        req.session.visitCount = 1;
-      }
 
       res.json(userData);
     });
 
+
+
   } catch (error) {
+    console.log(error);
     res.status(500).json({error});
   }
 });
