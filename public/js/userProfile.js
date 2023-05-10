@@ -11,9 +11,9 @@ $submitBtn.addEventListener('click', async (event) => {
 
 
   try {
-    const response = await fetch('/api/todos', {
+    const response = await fetch('/api/blogs', {
       method: 'POST',
-      body: JSON.stringify({todo: $todoInput.value}),
+      body: JSON.stringify({content: $todoInput.value}),
       headers: {
         'Content-Type': 'application/json',
       }
