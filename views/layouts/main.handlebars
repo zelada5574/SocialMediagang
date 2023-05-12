@@ -9,7 +9,8 @@
 <nav class="navbar bg-dark" data-bs-theme="dark">
   <div class="container-fluid">
     <span class="navbar-brand mb-0 h1">Chirper</span>
-    <span class="navbar-brand mb-0 h1"> <a href="/homepage">Home</a> </span>
+    <span class="navbar-brand mb-0 h1"> {{#if user}} <a href="/homepage">Home</a> </span> {{/if}}
+    <span class="navbar-brand mb-0 h1"> <a href='/users/{{loggedInUser.id}}'>Profile</a> </span> 
   </div>
 </nav>
 
