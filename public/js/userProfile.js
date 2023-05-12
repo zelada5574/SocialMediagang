@@ -3,6 +3,7 @@ const $logoutBtn = document.getElementById('logoutBtn');
 const $todoInput = document.getElementById('todo');
 
 
+
 $todosubmitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
 
