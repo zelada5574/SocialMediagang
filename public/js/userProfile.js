@@ -1,8 +1,9 @@
-const $submitBtn = document.getElementById('submitBtn');
+const $todosubmitBtn = document.getElementById('todosubmitBtn');
+const $logoutBtn = document.getElementById('logoutBtn');
 const $todoInput = document.getElementById('todo');
 
 
-$submitBtn.addEventListener('click', async (event) => {
+$todosubmitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
 
   if ($todoInput.value.trim() === '') {
@@ -20,7 +21,7 @@ $submitBtn.addEventListener('click', async (event) => {
     });
 
     const data = await response.json();
-    console.log(data);
+    location.reload();
 
   } catch (error) {
     console.log(error);
@@ -28,3 +29,17 @@ $submitBtn.addEventListener('click', async (event) => {
 
 
 });
+
+if ($logoutBtn) {
+  $logoutBtn.addEventListener('click', async () => {
+    try {
+      const response = await fetch('/api/users/logout', {
+        method: 'POST',
+      });
+      const data = await response.json();
+      location.href = '/login';
+    } catch (error) {
+      alert(error);
+    }
+  });
+  }
