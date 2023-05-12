@@ -3,6 +3,7 @@
 <ul id="fullList">
   {{#each blogs as |blog|}}
     <li>{{content}}</li>
-    <p>Made by {{username}}</p>
+    <p>Made by {{user.username}}</p>
+    <p>Created at {{createdAt}}</p>
   {{/each}}
 </ul>

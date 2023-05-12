@@ -4,6 +4,19 @@ const { Blog, User } = require('../../models');
 // /users
 // /users  - render all the users
 // /Blogs - renders all the Blogs
+// router.get('/', async (req, res) => {
+//   try {
+//     if (req.session.loggedIn) {
+//       res.render('home', {
+//         user: req.session.user
+//       });
+//     }
+//   } catch (error) {
+//     res.status(500).json({error});
+//   }
+// });
+
+
 router.get('/signup', async (req, res) => {
   try {
     const usersData = await User.findAll();
@@ -47,7 +60,6 @@ router.get('/login', async (req, res) => {
 
 router.get('/homepage', async (req, res) => {
   try {
-
     if (req.session.loggedIn) {
     const blogsData = await Blog.findAll(
       {
@@ -63,6 +75,7 @@ router.get('/homepage', async (req, res) => {
 
     res.render('home', {
       blogs,
+      loggedInUser: req.session.user || null,
     })
   } else {
     res.redirect('/login');
