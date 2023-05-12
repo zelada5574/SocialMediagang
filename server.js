@@ -1,6 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
+const fileUpload = require('express-fileupload');
 const routes = require('./routes');
 const helpers = require('./utils');
 
@@ -36,6 +37,7 @@ const sessionConfig = {
 
 // /api/users/signup
 
+app.use(fileUpload());
 // Express middleware
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended: true}));
