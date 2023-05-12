@@ -8,6 +8,9 @@ const { User } = require('../../../models');
 router.post('/signup', async (req, res) => {
   try {
     const userData = req.body;
+    if (!userData.email) {
+      return res.status(400).json({message: 'Please enter a valid email address'});
+    }
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     userData.password = hashedPassword;
     const newUser = await User.create(userData);

@@ -45,6 +45,36 @@ router.get('/login', async (req, res) => {
   }
 });
 
+router.get('/homepage', async (req, res) => {
+  try {
+
+    if (req.session.loggedIn) {
+    const blogsData = await Blog.findAll(
+      {
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          }
+        ]
+      }
+    );
+    const blogs = blogsData.map(blog => blog.get({plain: true}));
+
+    res.render('home', {
+      blogs,
+    })
+  } else {
+    res.redirect('/login');
+    return;
+  }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
+
+
 router.get('/users/:userId', async (req, res) => {
   try {
     const { userId } = req.params;

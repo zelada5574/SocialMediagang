@@ -1,4 +1,5 @@
 const $username = document.getElementById('username');
+const $email = document.getElementById('email');
 const $password = document.getElementById('password');
 const $submitBtn = document.getElementById('submitBtn');
 const $loginsubmitBtn = document.getElementById('loginsubmitBtn');
@@ -39,17 +40,18 @@ if ($submitBtn) {
 $submitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
   const username = $username.value;
+  const email = $email.value;
   const password = $password.value;
 
-  if (!username || !password) {
-    return alert('Username and password must be provided');
+  if (!username || !password || !email) {
+    return alert('Username, email and password must be provided');
   }
 
   try {
     const response = await fetch('/api/users/signup', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({username, password}),
+      body: JSON.stringify({username, password, email}),
     });
     const data = await response.json();
     console.log(data);

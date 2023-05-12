@@ -10,7 +10,6 @@ $todosubmitBtn.addEventListener('click', async (event) => {
     return alert('Please enter a todo');
   }
 
-
   try {
     const response = await fetch('/api/blogs', {
       method: 'POST',
