@@ -3,6 +3,9 @@
 <ul id="fullList">
   {{#each blogs as |blog|}}
     <li>{{content}}</li>
+    {{#if image}}
+    <img src="{{image}}" alt="image">
+    {{/if}}
     <p>Made by {{user.username}}</p>
     <p>Created at {{createdAt}}</p>
   {{/each}}

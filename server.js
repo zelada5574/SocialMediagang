@@ -40,15 +40,34 @@ const sessionConfig = {
 app.use(fileUpload());
 // Express middleware
 app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({extended: true}));
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb'}));
 // This will create a req.session object for every request that comes into our server
 // Every route that we declare will have access to req.session
 // This "req.session" object will persist data that we store on it
 // until we destroy the session or the server shuts down
 app.use(session(sessionConfig));
 
+
+
 // /users/c75066b2-1082-4a98-8718-4e5536dbac5e
+
+app.post('/upload', (req, res) => {
+  // if (!req.files) return res.sendStatus(400).json({message: 'No image submitted'});
+  console.log(req.files);
+  const file = req.files.file;
+  const fileName = file.name;
+  file.mv("./public/images/" + fileName, (err) => {
+    if (err) {
+        console.log(err);
+        res.send("error occured");
+    } else {
+        res.status(200).json({name: fileName, path: `/images/${fileName}`});
+    }
+});
+});
+
+
 app.use(routes);
 
 
