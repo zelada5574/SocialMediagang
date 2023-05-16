@@ -1084,6 +1084,11 @@ a:hover {
   background-color: #31a9e1;
 }
 
+.login-card {
+  display: flex;
+  justify-content: center;
+}
+
 .card {
   border: 1px solid #1a1a1a;
   margin-bottom: 1rem;
