@@ -1,6 +1,6 @@
 const $todosubmitBtn = document.getElementById('todosubmitBtn');
 const $logoutBtn = document.getElementById('logoutBtn');
-const $todoInput = document.getElementById('todo');
+const $todoInput = document.getElementById('chirp');
 const $imageInput = document.getElementById('image');
 let filePath = '';
 
@@ -31,7 +31,7 @@ $todosubmitBtn.addEventListener('click', async (event) => {
     }
   }
   if ($todoInput.value.trim() === '') {
-    return alert('Please enter a todo');
+    return alert('Please type the chirp');
   }
 
   try {
@@ -47,7 +47,7 @@ $todosubmitBtn.addEventListener('click', async (event) => {
     });
 
     const data2 = await response.json();
-    // location.reload();
+    location.reload();
 
   } catch (error) {
     console.log(error);
