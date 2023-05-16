@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog, User } = require('../../models');
+const { Blog, User, Comment } = require('../../models');
 
 // /users
 // /users  - render all the users
@@ -22,7 +22,10 @@ router.get('/signup', async (req, res) => {
     const usersData = await User.findAll();
     const users = usersData.map(user => user.get({plain: true}));
 
-    // req.session.save(() => {})
+    req.session.save(() => {
+      req.session.loggedIn = false;
+    })
+
 
     res.render('signup', {
       sentence: 'This is a sentence',
@@ -42,7 +45,9 @@ router.get('/login', async (req, res) => {
     const usersData = await User.findAll();
     const users = usersData.map(user => user.get({plain: true}));
 
-    // req.session.save(() => {})
+    req.session.save(() => {
+      req.session.loggedIn = false;
+    })
 
     res.render('login', {
       sentence: 'This is a sentence',
@@ -77,7 +82,6 @@ router.get('/homepage', async (req, res) => {
     })
   } else {
     res.redirect('/login');
-    return;
   }
   } catch (error) {
     console.log(error);
@@ -87,6 +91,7 @@ router.get('/homepage', async (req, res) => {
 
 
 router.get('/users/:userId', async (req, res) => {
+  if (req.session.loggedIn) {
   try {
     const { userId } = req.params;
     const userData = await User.findByPk(userId, {
@@ -107,7 +112,56 @@ router.get('/users/:userId', async (req, res) => {
   } catch (error) {
     res.status(500).json({error});
   }
+} else {
+  res.redirect('/login');
+  return;
+}
 });
+
+router.get('/blogs/:blogId', async (req, res) => {
+  try {
+    if (req.session.loggedIn) {
+    const { blogId } = req.params;
+    const blogData = await Blog.findByPk(blogId, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ]
+    });
+    const commentData = await Comment.findAll(
+      {
+        where: {
+          blogId: blogId,
+        },
+      }, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ]
+    });
+    const comment = commentData.map(comment => comment.get({plain: true}));
+    const blog = blogData.get({plain: true});
+    console.log(comment);
+    console.log(blog);
+    res.render('post', {
+      comment,
+      blog,
+      loggedInUser: req.session.user || null,
+    })
+  } else {
+    res.redirect('/login');
+    return;
+  }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({error});
+  }
+});
+
 
 
 module.exports = router;

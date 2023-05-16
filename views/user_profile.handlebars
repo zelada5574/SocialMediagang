@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<h4>Post</h4>
 <h1>{{user.username}}</h1>
 <button id="logoutBtn">Log out</button>
 
 <br></br>
 
 <form>
-  <input id='todo' type="text" name="todo" placeholder="Walk the dog"/>
+  <input class="d-inline" id='todo' type="text" name="todo" placeholder="Chirp!!"/>
 
-  <br></br>
-    <input type="file" name="image" id="image"/>
-  <br></br>
+    <input class="d-inline" type="file" name="image" id="image"/>
 
-  <button type="button" class="btn btn-dark" id="todosubmitBtn">Submit</button>
+  <button type="button" class="btn btn-dark d-inline" id="todosubmitBtn">Post</button>
 
 </form>
 
-<ul id="todoList">
+<h1>Previous Posts: </h1>
+
+<ul class="mt-5" id="todoList">
   {{#each user.blogs as |blog|}}
-    <li>{{blog.content}}</li>
+    <li class="d-inline">{{blog.content}}</li>
+    <button id="deleteBtn" class="{{blog.id}}">Delete</button>
   {{/each}}
 </ul>
 

@@ -1,0 +1,45 @@
+<div class="card mt-3 col-11">
+  <div class="card-header">
+    Made by: {{blog.user.username}}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{blog.content}}</p>
+      <footer class="blockquote-footer">{{format_date blog.createdAt}}</footer>
+    </blockquote>
+  </div>
+</div>
+
+<div class="ml-4">
+<form>
+    <div class="card mt-5 col-12">
+  <div class="card-header d-flex justify-content-center">
+    <h4>Add a comment: </h4>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <input id='comment' type="text" name="comment" class="col-11" placeholder="Wow thats cool!!"/>
+      <button type="button" class="btn btn-primary" id="commentSubmitBtn">Submit</button>
+    </blockquote>
+  </div>
+</div>
+</form>
+</div>
+
+<h1>Comments: </h1>
+
+{{#each comment}}
+
+<div class="card mt-2 col-11">
+    <div class="card-header">
+    Made by: {{comment.username}}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{content}}</p>
+      <footer class="blockquote-footer">{{format_date createdAt}}</footer>
+    </blockquote>
+  </div>
+</div>
+
+{{/each}}
