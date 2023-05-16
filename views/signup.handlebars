@@ -1,11 +1,45 @@
-<h1>Sign up</h1>
+<div class="login-card">
+  <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 40rem;">
+    <div class="card-body">
+      <br />
+      <h1>Please Sign Up</h1>
+      <br />
+      <form>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          style="height: 3rem; width: 20rem; border-radius: 5px;"
+        />
+        <br />
+        <br />
+        <input 
+          id='email' 
+          type="text" 
+          name="email" 
+          placeholder="Email"
+          style="height: 3rem; width: 20rem; border-radius: 5px;"
+        />
+        <br />
+        <br />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          style="height: 3rem; width: 20rem; border-radius: 5px;"
+        />
+        <br />
+        <br />
+        <button class="btn btn-dark" id="submitBtn">Create Account</button>
+        <br />
+        <br />
+        <br />
+        <button class="btn btn-dark"><a class="text-light" href="/login">Already have an Account?</a></button>
+        
+      </form>
 
-<form>
-  <input id='username' type="text" name="username" placeholder="Username"/>
-  <input id='email' type="text" name="email" placeholder="Email"/>
-  <input id='password' type="password" name="password" placeholder="Password"/>
-  <button id="submitBtn">Submit</button>
-  <p>Click <a href="/login">here</a> to log in instead</p>
-</form>
-
-
+    </div>
+  </div>
+</div>
