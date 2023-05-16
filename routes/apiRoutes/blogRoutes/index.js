@@ -1,6 +1,20 @@
 const router = require('express').Router();
 const { Blog } = require('../../../models');
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const dbBlogData = await Blog.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    res.status(200).json(dbBlogData);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 router.post('/', async (req, res) => {
   try {
     if (!req.session.loggedIn) {
