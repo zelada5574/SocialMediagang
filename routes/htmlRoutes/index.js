@@ -27,7 +27,6 @@ router.get('/signup', async (req, res) => {
     res.render('signup', {
       sentence: 'This is a sentence',
       users,
-      visitCount: req.session.visitCount || 0,
       loggedInUser: req.session.user || null,
     });
 
@@ -48,7 +47,6 @@ router.get('/login', async (req, res) => {
     res.render('login', {
       sentence: 'This is a sentence',
       users,
-      visitCount: req.session.visitCount || 0,
       loggedInUser: req.session.user || null,
     });
 
@@ -95,7 +93,7 @@ router.get('/users/:userId', async (req, res) => {
       include: [
         {
           model: Blog,
-          attributes: ['id', 'content',],
+          attributes: ['id', 'content', 'image',],
         }
       ]
     });
@@ -104,6 +102,7 @@ router.get('/users/:userId', async (req, res) => {
 
     res.render('user_profile', {
       user,
+      loggedInUser: req.session.user || null,
     });
   } catch (error) {
     res.status(500).json({error});
