@@ -1712,3 +1712,7 @@ form [type='radio'] {
     align-content: center;
   }
 }
+
+body {
+  background-color: #f0f2f5f8;
+}
