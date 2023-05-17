@@ -3,20 +3,25 @@
 
 <br></br>
 
-<form>
-  <input id='chirp' type="text" name="chirp" placeholder="Please start chirping!!"/>
-
-    <input class="d-inline" type="file" name="image" id="image"/>
-
+<div class="card shadow p-3 mb-5 bg-body rounded">
+  <div class="card-body">
+  <input id='chirp' type="text" style="width: 50rem; height: 5rem;" maxlength="120" name="chirp" placeholder="Please start chirping!!"/>
+<br />
+<br />
+    <input type="file" name="image" id="image"/>
+<br />
+<br />
   <button type="button" class="btn btn-dark d-inline" id="todosubmitBtn">Post</button>
+</div>
+  </div>
+<br />
 
-</form>
-
-<h5>Previous Posts: </h5>
 
 <ul class="mt-5 list-group" id="todoList">
+  <h5>Previous Posts: </h5>
+  <br />
   {{#each user.blogs as |blog|}}
-    <li class="d-inline list-group-item">{{blog.content}}</li>
+    <li class="d-inline list-group-item shadow p-3 mb-5 bg-body rounded">{{blog.content}}</li>
     <div class="w-100 w-sm-50 w-md-25">
     <button id="deleteBtn" class="{{blog.id}} btn btn-dark btn-success float-right">Delete</button>
     </div>
