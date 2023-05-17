@@ -13,6 +13,8 @@ const $todoInput = document.getElementById('chirp');
 const $imageInput = document.getElementById('image');
 const $deleteBtn = document.getElementById('deleteBtn');
 
+;
+
 
 let filePath = '';
 
@@ -207,3 +209,5 @@ $submitBtn.addEventListener('click', async (event) => {
   }
 });
 }
+
+// $imageUpload .eventListener('change', async (event) => {

@@ -6,7 +6,15 @@
 <form>
   <input id='chirp' type="text" name="chirp" placeholder="Please start chirping!!"/>
 
-    <input class="d-inline" type="file" name="image" id="image"/>
+{{!-- <button id="imageUpload"class="btn btn-dark d-inline">Share Image</button> --}}
+
+    
+<button>
+  <label for="image" class="d-inline">
+    <input type="file" name="image" id="image" style="display: none;" />
+    Share Image
+  </label>
+</button>
 
   <button type="button" class="btn btn-dark d-inline" id="todosubmitBtn">Post</button>
 
