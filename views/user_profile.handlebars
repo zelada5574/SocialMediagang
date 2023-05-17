@@ -12,13 +12,13 @@
 
 </form>
 
-<h1>Previous Posts: </h1>
+<h5>Previous Posts: </h5>
 
 <ul class="mt-5 list-group" id="todoList">
   {{#each user.blogs as |blog|}}
     <li class="d-inline list-group-item">{{blog.content}}</li>
-    <div>
-    <button id="deleteBtn" class="{{blog.id}}">Delete</button>
+    <div class="w-100 w-sm-50 w-md-25">
+    <button id="deleteBtn" class="{{blog.id}} btn btn-dark btn-success float-right">Delete</button>
     </div>
     <br></br>
   {{/each}}
