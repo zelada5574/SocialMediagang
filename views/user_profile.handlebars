@@ -14,10 +14,13 @@
 
 <h1>Previous Posts: </h1>
 
-<ul class="mt-5" id="todoList">
+<ul class="mt-5 list-group" id="todoList">
   {{#each user.blogs as |blog|}}
-    <li class="d-inline">{{blog.content}}</li>
+    <li class="d-inline list-group-item">{{blog.content}}</li>
+    <div>
     <button id="deleteBtn" class="{{blog.id}}">Delete</button>
+    </div>
+    <br></br>
   {{/each}}
 </ul>
 
