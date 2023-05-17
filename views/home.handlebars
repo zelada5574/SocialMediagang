@@ -1,12 +1,20 @@
-<h1> Home </h1>
+<h1 class="mt-2 d-flex justify-content-center"> Homepage </h1>
 
 <ul id="fullList">
   {{#each blogs as |blog|}}
-    <li>{{content}}</li>
-    {{#if image}}
-    <img src="{{image}}" alt="image">
-    {{/if}}
-    <p>Made by {{user.username}}</p>
-    <p>Created at {{createdAt}}</p>
+  <div id={{id}} class="card mt-3 col-11">
+  <div class="card-header">
+    Made by: {{user.username}}
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{content}}</p>
+      {{#if image}}
+      <img src={{image}} alt="image" class="img-fluid">
+      {{/if}}
+      <footer class="blockquote-footer">{{format_date createdAt}}</footer>
+    </blockquote>
+  </div>
+</div>
   {{/each}}
 </ul>

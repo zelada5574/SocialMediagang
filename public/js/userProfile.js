@@ -2,15 +2,31 @@ const $todosubmitBtn = document.getElementById('todosubmitBtn');
 const $logoutBtn = document.getElementById('logoutBtn');
 const $todoInput = document.getElementById('chirp');
 const $imageInput = document.getElementById('image');
+const $deleteBtn = document.getElementById('deleteBtn');
+
 let filePath = '';
 
-
+if ($deleteBtn) {
+$deleteBtn.addEventListener('click', async (event) => {
+  event.preventDefault();
+  const id = $deleteBtn.getAttribute('class');
+  try {
+    const response = await fetch(`/api/blogs/${id}`, {
+      method: 'DELETE',
+    });
+    const data = await response.json();
+    console.log(data);
+    location.reload();
+  }
+  catch (error) {
+    console.log(error);
+  }
+});
+}
 
 $todosubmitBtn.addEventListener('click', async (event) => {
   event.preventDefault();
   if ($imageInput.files[0]){
-    console.log($imageInput.files[0].name);
-    console.log($imageInput.files[0]);
     const file = $imageInput.files[0];
     const formData = new FormData();
     formData.append('file', file);

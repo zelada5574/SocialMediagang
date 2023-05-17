@@ -3,6 +3,50 @@ const $email = document.getElementById('email');
 const $password = document.getElementById('password');
 const $submitBtn = document.getElementById('submitBtn');
 const $loginsubmitBtn = document.getElementById('loginsubmitBtn');
+const $postsListEl = document.getElementById('fullList');
+const $comment = document.getElementById('comment');
+const $commentSubmitBtn = document.getElementById('commentSubmitBtn');
+
+if ($commentSubmitBtn) {
+  $commentSubmitBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+    const content = $comment.value;
+    const blogId = location.href.split('/').slice(-1)[0];
+    console.log(blogId);
+    
+    if (!content) {
+      return alert('Comment must be provided');
+    }
+
+    try {
+      const response = await fetch('/api/comments', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({content, blogId}),
+      });
+      const data = await response.json();
+      if (data.message) {
+        return alert(data.message);
+      }
+      alert('Comment added');
+      console.log(data);
+      // location.reload();
+    }
+    catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  });
+}
+
+
+if ($postsListEl) {
+  $postsListEl.addEventListener('click', async (event) => {
+    console.log(event.target.offsetParent.id);
+    const blogId = event.target.offsetParent.id;
+    location.href = `/blogs/${blogId}`;
+  });
+}
 
 
 if ($loginsubmitBtn) {

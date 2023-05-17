@@ -4,6 +4,7 @@ const session = require('express-session');
 const fileUpload = require('express-fileupload');
 const routes = require('./routes');
 const helpers = require('./utils');
+const path = require('path');
 
 const hbs = exphbs.create({
   helpers
@@ -21,6 +22,7 @@ const PORT = process.env.PORT || 3001;
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+app.use(express.static(__dirname + '/public'))
 
 // setup express to use sessions
 // it will create a cookie on the browser
