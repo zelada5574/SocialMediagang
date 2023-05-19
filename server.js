@@ -5,6 +5,7 @@ const fileUpload = require('express-fileupload');
 const routes = require('./routes');
 const helpers = require('./utils');
 const path = require('path');
+require('dotenv').config();
 
 const hbs = exphbs.create({
   helpers
@@ -16,46 +17,25 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
-// setup express so that it knows we're using handlebars as our
-// template engine
-
-
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.use(express.static(__dirname + '/public'))
 
-// setup express to use sessions
-// it will create a cookie on the browser
-// and cookies are automatically setup between client/server
-// we do not need to do any other additional settings from the client/back-end to
+app.use('/favicon.ico', express.static('/images/favicon.ico'));
 
-//process the cookie
 const sessionConfig = {
-  secret: 'Super secret secret', // normally this should be an environmental variable
+  secret: process.env.DB_SECRET, // normally this should be an environmental variable
   resave: false,
   saveUninitialized: false,
-  // maxAge: 1000 * 60 * 60 * 24
 };
 
-// /api/users/signup
-
 app.use(fileUpload());
-// Express middleware
 app.use(express.static(__dirname + '/public'));
 app.use(express.json({limit: '80mb'}));
 app.use(express.urlencoded({limit: '80mb'}));
-// This will create a req.session object for every request that comes into our server
-// Every route that we declare will have access to req.session
-// This "req.session" object will persist data that we store on it
-// until we destroy the session or the server shuts down
 app.use(session(sessionConfig));
 
-
-
-// /users/c75066b2-1082-4a98-8718-4e5536dbac5e
-
 app.post('/upload', (req, res) => {
-  // if (!req.files) return res.sendStatus(400).json({message: 'No image submitted'});
   console.log(req.files);
   const file = req.files.file;
   const fileName = file.name;

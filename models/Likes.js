@@ -22,7 +22,6 @@ Likes.init(
     },
     userLikedId: {
         type: DataTypes.UUID,
-        // unique: true,
         references: {
             model: 'user',
             key: 'id',
@@ -37,7 +36,6 @@ Likes.init(
     sequelize,
     freezeTableName: true,
     modelName: 'like',
-    // timestamps: false,
   }
 );
 

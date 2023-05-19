@@ -24,12 +24,13 @@ Comment.init(
         key: 'id',
       }
     },
-    userCommentId: {
-        type: DataTypes.UUID,
-        references: {
-            model: 'user',
-            key: 'id',
-        }
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      references: {
+        model: 'user',
+        key: 'username',
+      }
     },
     totalLikes: {
       type: DataTypes.INTEGER,
