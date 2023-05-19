@@ -1714,5 +1714,9 @@ form [type='radio'] {
 }
 
 body {
-  background-color: #f0f2f5f8;
+  background-color: #a3b6e3f8;
+}
+
+img {
+  scale: 1;
 }

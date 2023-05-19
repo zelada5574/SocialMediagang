@@ -1,5 +1,5 @@
 <h1 class="mt-2 d-flex justify-content-center"> Homepage </h1>
-
+<br />
 <ul id="fullList">
   {{#each blogs as |blog|}}
   <div id={{id}} class="card mt-3 col-11 shadow p-3 mb-5 bg-body rounded">
@@ -11,6 +11,8 @@
       <p>{{content}}</p>
       {{#if image}}
       <img src={{image}} alt="image" class="img-fluid">
+      <br />
+      <br />
       {{/if}}
       <footer class="blockquote-footer">{{format_date createdAt}} <button id="likeBtn" onclick="like(this)" class="{{id}} {{totalLikes}} {{../loggedInUser.id}} fa fa-thumbs-up"></button> Likes: {{totalLikes}}</footer>
     </blockquote>

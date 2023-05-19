@@ -1,20 +1,14 @@
 const router = require('express').Router();
 const { Blog, User, Comment, Likes } = require('../../models');
 
-// /users
-// /users  - render all the users
-// /Blogs - renders all the Blogs
-// router.get('/', async (req, res) => {
-//   try {
-//     if (req.session.loggedIn) {
-//       res.render('home', {
-//         user: req.session.user
-//       });
-//     }
-//   } catch (error) {
-//     res.status(500).json({error});
-//   }
-// });
+
+router.get('/', async (req, res) => {
+  try {
+      res.render('login')
+  } catch (error) {
+    res.status(500).json({error});
+  }
+});
 
 
 router.get('/signup', async (req, res) => {
@@ -79,8 +73,6 @@ router.get('/homepage', async (req, res) => {
     const likeData = dbLikeData.map(like => like.get({plain: true}));
 
     const blogs = blogsData.map(blog => blog.get({plain: true}));
-    console.log(blogs);
-    console.log(likeData);
     res.render('home', {
       likeData,
       blogs,
@@ -104,7 +96,7 @@ router.get('/users/:userId', async (req, res) => {
       include: [
         {
           model: Blog,
-          attributes: ['id', 'content', 'image',],
+          attributes: ['id', 'content', 'image', 'createdAt', 'totalLikes'],
         }
       ]
     });
@@ -141,18 +133,10 @@ router.get('/blogs/:blogId', async (req, res) => {
         where: {
           blogId: blogId,
         }
-      }, {
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-      ]
-    });
+      }
+    );
     const comment = commentData.map(comment => comment.get({plain: true}));
     const blog = blogData.get({plain: true});
-    console.log(comment);
-    console.log(blog);
     res.render('post', {
       comment,
       blog,

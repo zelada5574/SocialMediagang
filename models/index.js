@@ -5,7 +5,6 @@ const Likes = require('./Likes');
 
 User.hasMany(Blog, {
   foreignKey: 'userId',
-  // if we delete user, delete all their todos as well
   onDelete: 'CASCADE',
 });
 
@@ -15,7 +14,6 @@ Blog.belongsTo(User, {
 
 Blog.hasMany(Comment, {
   foreignKey: 'blogId',
-  //if we delete the blogpost, we delete all comments
   onDelete: 'CASCADE',
 });
 
@@ -24,12 +22,12 @@ Comment.belongsTo(Blog, {
 });
 
 User.hasMany(Comment, {
-  foreignKey: 'userId',
+  foreignKey: 'userCommentId',
   onDelete: 'CASCADE',
 });
 
 Comment.belongsTo(User, {
-  foreignKey: 'userId',
+  foreignKey: 'userCommentId',
 });
 
 User.hasMany(Likes, {
