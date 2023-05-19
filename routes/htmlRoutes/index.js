@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blog, User, Comment } = require('../../models');
+const { Blog, User, Comment, Likes } = require('../../models');
 
 // /users
 // /users  - render all the users
@@ -70,13 +70,19 @@ router.get('/homepage', async (req, res) => {
           {
             model: User,
             attributes: ['username'],
-          }
+          },
         ]
       }
     );
-    const blogs = blogsData.map(blog => blog.get({plain: true}));
+    const dbLikeData = await Likes.findAll();
 
+    const likeData = dbLikeData.map(like => like.get({plain: true}));
+
+    const blogs = blogsData.map(blog => blog.get({plain: true}));
+    console.log(blogs);
+    console.log(likeData);
     res.render('home', {
+      likeData,
       blogs,
       loggedInUser: req.session.user || null,
     })
@@ -134,7 +140,7 @@ router.get('/blogs/:blogId', async (req, res) => {
       {
         where: {
           blogId: blogId,
-        },
+        }
       }, {
       include: [
         {

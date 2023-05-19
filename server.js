@@ -42,8 +42,8 @@ const sessionConfig = {
 app.use(fileUpload());
 // Express middleware
 app.use(express.static(__dirname + '/public'));
-app.use(express.json({limit: '50mb'}));
-app.use(express.urlencoded({limit: '50mb'}));
+app.use(express.json({limit: '80mb'}));
+app.use(express.urlencoded({limit: '80mb'}));
 // This will create a req.session object for every request that comes into our server
 // Every route that we declare will have access to req.session
 // This "req.session" object will persist data that we store on it
