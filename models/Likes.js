@@ -1,11 +1,11 @@
 const {Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection.js');
 
-class Blog extends Model {
+class Likes extends Model {
 }
 
 
-Blog.init(
+Likes.init(
   {
     id: {
       type: DataTypes.UUID,
@@ -13,32 +13,32 @@ Blog.init(
       primaryKey: true,
       allowNull: false,
     },
-    content: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    userId: {
+    likedBlogId: {
       type: DataTypes.UUID,
       references: {
-        model: 'user',
+        model: 'blog',
         key: 'id',
       }
     },
-    totalLikes: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+    userLikedId: {
+        type: DataTypes.UUID,
+        // unique: true,
+        references: {
+            model: 'user',
+            key: 'id',
+        }
+    },
+    isLiked: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
     },
   },
   {
     sequelize,
     freezeTableName: true,
-    modelName: 'blog',
+    modelName: 'like',
     // timestamps: false,
   }
 );
 
-module.exports = Blog;
+module.exports = Likes;

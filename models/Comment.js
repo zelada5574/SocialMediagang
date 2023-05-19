@@ -31,7 +31,7 @@ Comment.init(
             key: 'id',
         }
     },
-    likes: {
+    totalLikes: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },

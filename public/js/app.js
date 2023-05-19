@@ -6,20 +6,83 @@ const $loginsubmitBtn = document.getElementById('loginsubmitBtn');
 const $postsListEl = document.getElementById('fullList');
 const $comment = document.getElementById('comment');
 const $commentSubmitBtn = document.getElementById('commentSubmitBtn');
-
 const $todosubmitBtn = document.getElementById('todosubmitBtn');
 const $logoutBtn = document.getElementById('logoutBtn');
 const $todoInput = document.getElementById('chirp');
 const $imageInput = document.getElementById('image');
 const $deleteBtn = document.getElementById('deleteBtn');
-
-
 let filePath = '';
+let isLiked = false;
+
+async function dislike (event) {
+  try {
+  console.log('dislike');
+  const blogId = event.classList[0];
+  let likes = event.classList[1];
+  let isLiked = false;
+  likes--;
+  const dislikeData = await fetch(`/api/like/dislike/${blogId}`, {
+    method: 'POST',
+    body: JSON.stringify({likes, isLiked}),
+    headers: {'Content-Type': 'application/json'},
+  })
+  const data = await dislikeData.json();
+  console.log(data);
+  // location.reload();
+} catch (error) {
+  console.log(error);
+}
+}
+
+
+async function like (event) {
+  try {
+    const blogId = event.classList[0];
+    let likes = event.classList[1];
+    const userId = event.classList[2];
+    console.log(userId);
+    let isLiked = true;
+    const getLikes = await fetch(`/api/like/get/${blogId}`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+    });
+    const data = await getLikes.json();
+    console.log(data);
+    if (data.message){
+      alert (data.message);
+    }
+    if (data.length > 0) {
+    console.log(data[0].userLikedId);
+    console.log(userId);
+    if (data[0].userLikedId == userId) {
+      dislike (event);
+      return;
+    }
+  }
+    // for (const val of data) {
+    // if (val.isLiked) {
+    //   dislike (event);
+    //   return;
+    // }
+    // }
+    likes++;
+    const likePost = await fetch(`/api/like/${blogId}`, {
+      method: 'PUT',
+      body: JSON.stringify({likes, isLiked}),
+      headers: {'Content-Type': 'application/json'},
+    })
+    const data2 = await likePost.json();
+    console.log(data2);
+    // location.reload();
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 if ($deleteBtn) {
 $deleteBtn.addEventListener('click', async (event) => {
   event.preventDefault();
-  const id = $deleteBtn.getAttribute('class');
+  const id = $deleteBtn.classList[0];
   try {
     const response = await fetch(`/api/blogs/${id}`, {
       method: 'DELETE',
@@ -136,6 +199,9 @@ if ($commentSubmitBtn) {
 
 if ($postsListEl) {
   $postsListEl.addEventListener('click', async (event) => {
+    if (event.target.id === 'likeBtn') {
+      return;
+    }
     console.log(event.target.offsetParent.id);
     const blogId = event.target.offsetParent.id;
     location.href = `/blogs/${blogId}`;

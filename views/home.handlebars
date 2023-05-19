@@ -12,7 +12,7 @@
       {{#if image}}
       <img src={{image}} alt="image" class="img-fluid">
       {{/if}}
-      <footer class="blockquote-footer">{{format_date createdAt}}</footer>
+      <footer class="blockquote-footer">{{format_date createdAt}} <button id="likeBtn" onclick="like(this)" class="{{id}} {{totalLikes}} {{../loggedInUser.id}} fa fa-thumbs-up"></button> Likes: {{totalLikes}}</footer>
     </blockquote>
   </div>
 </div>
