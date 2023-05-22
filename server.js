@@ -24,7 +24,7 @@ app.use(express.static(__dirname + '/public'))
 app.use('/favicon.ico', express.static('/images/favicon.ico'));
 
 const sessionConfig = {
-  secret: process.env.DB_SECRET, // normally this should be an environmental variable
+  secret: 'secret secret', // normally this should be an environmental variable
   resave: false,
   saveUninitialized: false,
 };
