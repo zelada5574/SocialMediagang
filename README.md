@@ -1,6 +1,6 @@
 Project 2 "Chirper!!" Description: For this project, we were tasked to create a full-stack interactive application to showcase our skills as individual programmers and a team to potential employers. We had many challenging requirements to meet such as using Express file upload and Handlebars. 
 
-The tecnologies we used were MVC Folder organization, MySQL, Sequelize, Handlebars, Bcrypt for password hashing, Cookies for storing current logged in user data and displaying data on the navbar, and Express file upload. 
+The technologies we used were MVC Folder organization, MySQL, Sequelize, Handlebars, Bcrypt for password hashing, Cookies for storing current logged in user data and displaying data on the navbar, and Express file upload. 
 
 The user story for our project is as follows: As a stressed hardworking person, a user needs a place to socialize and share digital contents for fund , good laugh and relaxation.
 
