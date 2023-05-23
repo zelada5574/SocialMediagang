@@ -6,8 +6,8 @@ The user story for our project is as follows: As a stressed hardworking person, 
 
 The user flow for our project is as follows: The user is first greeted by the login page. Here the user has the option to log in if they already have an account or, if they are a first time user, to sign up for a new account. Once logged in, the user is directed to their profile page. Here they can view or delete their previous posts, post text, or upload a picture. The User also has the option to log out from the profile page. The navbar at the top of the application allows the user to navigate between their home page and profile. If the user selects to view their home page, they are directed to their feed. Here, users can view, like, and comment on posts of their followers. 
 
-![alt text](./cirperss1.png)
-![alt text](./chirperss2.png)
+![alt text](./public/images/cirperss1.png)
+![alt text](./public/images/chirperss2.png)
 
 Webpage: http://localhost:3001/login
 Repository: https://github.com/zelada5574/SocialMediagang
